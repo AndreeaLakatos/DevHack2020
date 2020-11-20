@@ -9,11 +9,26 @@ ACup::ACup() {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	sphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("Collision component"));
-	SetRootComponent(sphereComponent);
-
 	cupMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Cup Mesh"));
-	cupMesh->SetupAttachment(sphereComponent);
+	SetRootComponent(cupMesh);
 
+	sphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("Collision component"));
+	sphereComponent->SetupAttachment(cupMesh);
+}
+
+void ACup::BeginPlay()
+{
+	Super::BeginPlay();
+
+	sphereComponent->OnComponentBeginOverlap.AddDynamic(this, &ACup::BeginOverlap);
+}
+
+void ACup::BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (OtherActor != nullptr && OtherActor != this)
+	{
+		this->Destroy();
+		OtherActor->Destroy();
+	}
 }
 
