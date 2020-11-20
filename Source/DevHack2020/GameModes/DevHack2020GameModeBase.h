@@ -13,5 +13,17 @@ UCLASS()
 class DEVHACK2020_API ADevHack2020GameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+		
+public:
+
+	virtual void playerBonus() {}
+
+	void incrementScore(int newScore) {
+		score += newScore;
+		playerBonus();
+	}
+
+private:
+	int score = 0;
 	
 };

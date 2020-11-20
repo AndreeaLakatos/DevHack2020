@@ -3,6 +3,7 @@
 
 #include "Cup.h"
 #include "Components/SphereComponent.h"
+#include "GameModes/DevHack2020GameModeBase.h"
 
 // Sets default values
 ACup::ACup() {
@@ -29,6 +30,12 @@ void ACup::BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherA
 	{
 		this->Destroy();
 		OtherActor->Destroy();
+		
+		
+		ADevHack2020GameModeBase* gameMode = Cast<ADevHack2020GameModeBase>(GetWorld()->GetAuthGameMode());
+		if (gameMode) {
+			gameMode->incrementScore(1);
+		}
 	}
 }
 
