@@ -7,6 +7,7 @@
 #include "Cup.generated.h"
 
 class UStaticMeshComponent;
+class USphereComponent;
 
 UCLASS()
 class DEVHACK2020_API ACup : public AActor
@@ -14,11 +15,16 @@ class DEVHACK2020_API ACup : public AActor
 	GENERATED_BODY()
 	
 public:	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		USphereComponent* sphereComponent;
+
 	// Sets default values for this actor's properties
 	ACup();
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		UStaticMeshComponent* cupMesh;
+
+	
 
 
 };

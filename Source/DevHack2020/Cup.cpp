@@ -2,13 +2,18 @@
 
 
 #include "Cup.h"
+#include "Components/SphereComponent.h"
 
 // Sets default values
 ACup::ACup() {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	sphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("Collision component"));
+	SetRootComponent(sphereComponent);
+
 	cupMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Cup Mesh"));
-	SetRootComponent(cupMesh);
+	cupMesh->SetupAttachment(sphereComponent);
+
 }
 
