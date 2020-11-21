@@ -15,9 +15,6 @@ class DEVHACK2020_API ALimitedGameModeBase : public ADevHack2020GameModeBase
 	GENERATED_BODY()
 
 public:
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int availableBalls = 12;
 
 	UFUNCTION(BlueprintCallable)
 	void modifyNoBalls(int value) {
@@ -27,5 +24,14 @@ public:
 	void playerBonus() override {
 		modifyNoBalls(1);
 	}
-	
+
+	int getGameModeValue() override{
+		return availableBalls;
+	}
+
+protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int availableBalls = 12;
+
 };

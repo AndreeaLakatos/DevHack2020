@@ -15,13 +15,18 @@ class DEVHACK2020_API ATimeGameModeBase : public ADevHack2020GameModeBase
 	GENERATED_BODY()
 	
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float seconds = 30;
-
 	void playerBonus() override {
 		seconds += 3;
 	}
 
+	int getGameModeValue() override {
+		return seconds;
+	}
+
+
 protected:
 	virtual void Tick(float deltaTime) override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float seconds = 30;
 };
