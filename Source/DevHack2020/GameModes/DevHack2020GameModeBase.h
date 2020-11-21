@@ -16,12 +16,21 @@ class DEVHACK2020_API ADevHack2020GameModeBase : public AGameModeBase
 		
 public:
 
+	UFUNCTION(BlueprintCallable)
 	virtual void playerBonus() {}
 
 	void incrementScore(int newScore) {
 		score += newScore;
 		playerBonus();
 	}
+
+	UFUNCTION(BlueprintCallable)
+	int getScore() {
+		return score;
+	}
+
+	UFUNCTION(BlueprintCallable)
+	virtual int getGameModeValue() { return 0; };
 
 private:
 	int score = 0;
