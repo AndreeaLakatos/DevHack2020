@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Kat Code Labs SRL. All Rights Reserved.
 
 
 #include "Cup.h"
